@@ -3,35 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="A<sup>3</sup>-Bench: Benchmarking Memory-Driven Scientific Reasoning via Anchor and Attractor Activation">
-  <meta name="keywords" content="A<sup>3</sup>-Bench, Benchmarking, Memory">
+        content="A^3-Bench: Benchmarking Memory-Driven Scientific Reasoning via Anchor and Attractor Activation">
+  <meta name="keywords" content="A3-Bench, Benchmarking, Memory, Scientific Reasoning, LLM">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A3-Bench: Benchmarking Memory-Driven Scientific Reasoning via Anchor and Attractor Activation</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,10 +24,42 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
 </head>
 <body>
 
-
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/exoskeletonzj/MAPS">
+            <b>MAPS (AAAI26)</b>
+            <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a>
+          <a class="navbar-item" href="https://github.com/exoskeletonzj/MARS">
+            <b>MARS (AAAI26)</b>
+            <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a>
+          <!-- <a class="navbar-item" href="https://github.com/exoskeletonzj/MAXS">
+            <b>MAXS</b>
+            <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-body">
@@ -50,7 +67,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            <img src="static/images/favicon.svg" style="width:1em;vertical-align: middle" alt="Logo">
+            <img src="static/images/favicon.svg" style="width:1em;vertical-align: middle" alt="Logo"/>
             A<sup>3</sup>-Bench
           </h1>
           <h2 class="subtitle is-3 publication-subtitle">
@@ -74,10 +91,10 @@
               <a href="https://xufangzhi.github.io/">Fangzhi Xu</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://qikalin.github.io/">Qika Lin</a><sup>2</sup>
+              <a href="https://qikalin.github.io/">Qika Lin</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://gr.xjtu.edu.cn/web/liukeen/1">Jun Liu</a><sup>1</sup>
+              <a href="https://gr.xjtu.edu.cn/web/liukeen/1">Jun Liu</a><sup>1*</sup>
             </span>
           </div>
 
@@ -88,9 +105,8 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2601.09274"
+                <a href="https://arxiv.org/pdf/2601.09274.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -116,7 +132,6 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
               <span class="link-block">
                 <a href="https://huggingface.co/datasets/Pekku/A3-Bench"
                    class="external-link button is-normal is-rounded is-dark">
@@ -125,6 +140,7 @@
                   </span>
                   <span>Dataset</span>
                   </a>
+              </span>
             </div>
 
           </div>
@@ -134,15 +150,21 @@
   </div>
 </section>
 
-
-
-<style>
-  .ul { text-decoration: underline; }
-</style>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="static/images/a1.png" alt="Performance and token analysis" width="95%"/>
+      <p>
+        Figure 1: Performance and token analysis across ten LLMs and three memory paradigms.
+        The three color-coded groups represent the experimental paradigms: <b>Vanilla</b>, <b>Anchors & Attractors</b>, and <b>Annotated Anchors & Attractors</b>.
+        This enhancement improves accuracy while keeping token costs controllable, supporting cognitively aligned evaluation and model development.
+      </p>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -170,335 +192,495 @@
             <span class="ul">U</span>tilization <span class="ul">I</span>ndex) metric to measure memory activation rates.
             Finally, through experiments with various base models and paradigms, we validate A<sup>3</sup>-Bench and analyze
             how memory activation impacts reasoning performance, providing insights into memory-driven scientific reasoning.
-          </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-  </div>
+    </div>
 </section>
 
-<!--<div class="container">-->
 
-<!--    <div class="columns is-centered">-->
-<!--      <div class="column is-full has-text-centered content">-->
-<!--        <h2 class="title is-3" id="leaderboard_test">Leaderboard on <img src="static/images/favicon.svg" style="width:1.0em;vertical-align: middle" alt="Logo">A<sup>3</sup>-Bench</h2>-->
-<!--        <div class="content">-->
-<!--          <p class="mt-3">Accuracy scores on the Vanilla paradigm of <span>A<sup>3</sup>-Bench</span>.</p>-->
+<section class="section">
+  <div class="container">
+    
+    <style>
+      .table-container {
+        overflow-x: auto;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid #eee;
+      }
+      
+      .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Google Sans', sans-serif;
+      }
 
-<!--          <table class="js-sort-table" id="results" data-js-sort-table="true">-->
-<!--            <thead><tr>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="0"><strong>#</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="1"><strong>Model</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="2"><strong>Method</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="3"><strong>Source</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="4"><strong>Date</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="5"><strong><u>ALL</u></strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="6"><strong>FQA</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="7"><strong>GPS</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="8"><strong>MWP</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="9"><strong>TQA</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="10"><strong>VQA</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="11"><strong>ALG</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="12"><strong>ARI</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="13"><strong>GEO</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="14"><strong>LOG</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="15"><strong>NUM</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="16"><strong>SCI</strong></td>-->
-<!--                <td class="js-sort-number" data-js-sort-colnum="17"><strong>STA</strong></td>-->
-<!--            </tr></thead><tbody>-->
-<!--            <tr>-->
-<!--              <td>1</td>-->
-<!--              <td><b class="best-score-text">InternVL2-Pro 🥇</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://github.com/OpenGVLab/InternVL" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-09-04</td>-->
-<!--              <td><b class="best-score-text">65.84</b></td>-->
-<!--              <td>65.0</td>-->
-<!--              <td>64.0</td>-->
-<!--              <td>75.4</td>-->
-<!--              <td>72.4</td>-->
-<!--              <td>52.3</td>-->
-<!--              <td>67.4</td>-->
-<!--              <td>63.1</td>-->
-<!--              <td>65.0</td>-->
-<!--              <td>30.4</td>-->
-<!--              <td>44.5</td>-->
-<!--              <td>67.0</td>-->
-<!--              <td>72.5</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>2</td>-->
-<!--              <td><b class="best-score-text">InternVL2-8B-MPO 🥈</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://internvl.github.io/blog/2024-11-14-InternVL-2.0-MPO/" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-11-14</td>-->
-<!--              <td><b class="best-score-text">65.65</b></td>-->
-<!--              <td>67.4</td> &lt;!&ndash; FQA (figure question answering) &ndash;&gt;-->
-<!--              <td>68.0</td> &lt;!&ndash; GPS (geometry problem solving) &ndash;&gt;-->
-<!--              <td>73.0</td> &lt;!&ndash; MWP (math word problem) &ndash;&gt;-->
-<!--              <td>65.3</td> &lt;!&ndash; TQA (textbook question answering) &ndash;&gt;-->
-<!--              <td>51.5</td> &lt;!&ndash; VQA (visual question answering) &ndash;&gt;-->
-<!--              <td>66.7</td> &lt;!&ndash; ALG (algebraic reasoning) &ndash;&gt;-->
-<!--              <td>60.6</td> &lt;!&ndash; ARI (arithmetic reasoning) &ndash;&gt;-->
-<!--              <td>68.5</td> &lt;!&ndash; GEO (geometry reasoning) &ndash;&gt;-->
-<!--              <td>19.1</td> &lt;!&ndash; LOG (logical reasoning) &ndash;&gt;-->
-<!--              <td>43.1</td> &lt;!&ndash; NUM (numeric commonsense) &ndash;&gt;-->
-<!--              <td>64.9</td> &lt;!&ndash; SCI (scientific reasoning) &ndash;&gt;-->
-<!--              <td>77.1</td> &lt;!&ndash; STA (statistical reasoning) &ndash;&gt;-->
-<!--            </tr>-->
-<!--              <tr><td>3</td>-->
-<!--              <td><b class="best-score-text">InternVL-Chat-V1.2-Plus 🥉</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://arxiv.org/abs/2312.14238" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-02-22</td>-->
-<!--              <td><b class="best-score-text">60.18</b></td>-->
-<!--              <td>52.2</td>-->
-<!--              <td>56.2</td>-->
-<!--              <td>78.3</td>-->
-<!--              <td>61.6</td>-->
-<!--              <td>55.5</td>-->
-<!--              <td>56.0</td>-->
-<!--              <td>64.4</td>-->
-<!--              <td>57.6</td>-->
-<!--              <td>21.6</td>-->
-<!--              <td>46.1</td>-->
-<!--              <td>60.0</td>-->
-<!--              <td>60.1</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>4</td>-->
-<!--              <td><b class="">InternLM-XComposer2-VL-7B</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://github.com/InternLM/InternLM-XComposer" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-01-22</td>-->
-<!--              <td><b class="">57.93</b></td>-->
-<!--              <td>53.9</td>-->
-<!--              <td>56.4</td>-->
-<!--              <td>77.1</td>-->
-<!--              <td>58.4</td>-->
-<!--              <td>43.2</td>-->
-<!--              <td>54.8</td>-->
-<!--              <td>57.6</td>-->
-<!--              <td>58.0</td>-->
-<!--              <td>16.5</td>-->
-<!--              <td>47.6</td>-->
-<!--              <td>59.1</td>-->
-<!--              <td>62.5</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>5</td>-->
-<!--              <td><b class="">Qwen-VL-Plus</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://github.com/QwenLM/Qwen-VL" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2023-12-26</td>-->
-<!--              <td><b class="">44.33</b></td>-->
-<!--              <td>55.9</td>-->
-<!--              <td>34.7</td>-->
-<!--              <td>29.7</td>-->
-<!--              <td>58.8</td>-->
-<!--              <td>42.4</td>-->
-<!--              <td>40.7</td>-->
-<!--              <td>35.4</td>-->
-<!--              <td>36.6</td>-->
-<!--              <td>21.6</td>-->
-<!--              <td>30.4</td>-->
-<!--              <td>55.9</td>-->
-<!--              <td>56.3</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>6</td>-->
-<!--              <td><b class="">SPHINX-MoE</b></td>-->
-<!--              <td>MoE 🤖</td>-->
-<!--              <td><a href="https://github.com/Alpha-VLLM/LLaMA2-Accessory/tree/main/SPHINX" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-01-13</td>-->
-<!--              <td><b class="">42.68</b></td>-->
-<!--              <td>50.3</td>-->
-<!--              <td>29.7</td>-->
-<!--              <td>40.9</td>-->
-<!--              <td>49.3</td>-->
-<!--              <td>43.3</td>-->
-<!--              <td>33.9</td>-->
-<!--              <td>43.0</td>-->
-<!--              <td>29.1</td>-->
-<!--              <td>14.4</td>-->
-<!--              <td>26.3</td>-->
-<!--              <td>46.9</td>-->
-<!--              <td>51.2</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>7</td>-->
-<!--              <td><b class="">MiniCPM-V-2 (2.8B)</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://github.com/OpenBMB/MiniCPM-V" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2024-04-14</td>-->
-<!--              &lt;!&ndash; "ALL": 39.89,-->
-<!--              "FQA": 51.7,-->
-<!--              "GPS": 27.4,-->
-<!--              "MWP": 39.8,-->
-<!--              "TQA": 42.5,-->
-<!--              "VQA": 34.7,-->
-<!--              "ALG": 31.3,-->
-<!--              "ARI": 34.4,-->
-<!--              "GEO": 30.7,-->
-<!--              "LOG": 13.4,-->
-<!--              "NUM": 33.5,-->
-<!--              "SCI": 38.5,-->
-<!--              "STA": 50.0 &ndash;&gt;-->
-<!--              <td><b class="">39.89</b></td>-->
-<!--              <td>51.7</td>-->
-<!--              <td>27.4</td>-->
-<!--              <td>39.8</td>-->
-<!--              <td>42.5</td>-->
-<!--              <td>34.7</td>-->
-<!--              <td>31.3</td>-->
-<!--              <td>34.4</td>-->
-<!--              <td>30.7</td>-->
-<!--              <td>13.4</td>-->
-<!--              <td>33.5</td>-->
-<!--              <td>38.5</td>-->
-<!--              <td>50.0</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>8</td>-->
-<!--              <td><b class="">PoT GPT-4 (Caption+OCR)</b></td>-->
-<!--              <td>Tool 🛠️</td>-->
-<!--              <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2023-10-03</td>-->
-<!--              <td><b class="">31.74</b></td>-->
-<!--              <td>27.6</td>-->
-<!--              <td>37.4</td>-->
-<!--              <td>23.9</td>-->
-<!--              <td>43.0</td>-->
-<!--              <td>30.3</td>-->
-<!--              <td>37.1</td>-->
-<!--              <td>27.9</td>-->
-<!--              <td>37.5</td>-->
-<!--              <td>22.7</td>-->
-<!--              <td>15.8</td>-->
-<!--              <td>44.5</td>-->
-<!--              <td>31.9</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>9</td>-->
-<!--              <td><b>CoT GPT4 (Caption+OCR)</b></td>-->
-<!--              <td>Tool 🛠️</td>-->
-<!--              <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2023-10-03</td>-->
-<!--              <td><b>30.50</b></td>-->
-<!--              <td>27.2</td>-->
-<!--              <td>35.9</td>-->
-<!--              <td>21.3</td>-->
-<!--              <td>43.1</td>-->
-<!--              <td>28.2</td>-->
-<!--              <td>35.7</td>-->
-<!--              <td>25.2</td>-->
-<!--              <td>35.8</td>-->
-<!--              <td>24.7</td>-->
-<!--              <td>15.4</td>-->
-<!--              <td>47.3</td>-->
-<!--              <td>31.3</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>10</td>-->
-<!--              <td><b>LLaVA (LLaMA-2-13B)</b></td>-->
-<!--              <td>LMM 🖼️</td>-->
-<!--              <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2023-10-03</td>-->
-<!--              <td><b>25.40</b></td>-->
-<!--              <td>22.9</td>-->
-<!--              <td>24.6</td>-->
-<!--              <td>18.1</td>-->
-<!--              <td>35.8</td>-->
-<!--              <td>29.7</td>-->
-<!--              <td>26.9</td>-->
-<!--              <td>22.5</td>-->
-<!--              <td>24.4</td>-->
-<!--              <td>19.1</td>-->
-<!--              <td>19.1</td>-->
-<!--              <td>34.7</td>-->
-<!--              <td>21.6</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>*</td>-->
-<!--              <td><b>Random Chance</b></td>-->
-<!--              <td>-</td>-->
-<!--              <td><a href="https://arxiv.org/abs/2310.02255" class="ext-link" style="font-size: 16px;">Link</a></td>-->
-<!--              <td>2023-10-03</td>-->
-<!--              <td><b>17.86</b></td>-->
-<!--              <td>15.5</td>-->
-<!--              <td>24.1</td>-->
-<!--              <td>4.5</td>-->
-<!--              <td>23.4</td>-->
-<!--              <td>24.3</td>-->
-<!--              <td>25.8</td>-->
-<!--              <td>13.8</td>-->
-<!--              <td>22.7</td>-->
-<!--              <td>13.4</td>-->
-<!--              <td>8.8</td>-->
-<!--              <td>15.8</td>-->
-<!--              <td>14.3</td>-->
-<!--            </tr>-->
-<!--        </tbody></table>-->
+      .custom-table thead tr {
+        background-color: #f5f5f5;
+        color: #333;
+        text-align: left;
+        font-weight: bold;
+        border-bottom: 2px solid #dbdbdb;
+      }
 
-<!--          <b>Human Performance*:</b> Average human performance from AMT annotators who have high school diplomas or above.-->
-<!--          <br>-->
-<!--          <b>Method types:</b> <b>MoE 🤖:</b> Mixture of Experts, <b>LMM 🖼️:</b> Large Multimodal Model, <b>Tool 🛠️:</b> Tool-augmented Large Language Model.-->
-<!--          <br>-->
-<!--          <b>Task types:</b> <b>FQA:</b> figure QA,-->
-<!--          <b>GPS:</b> geometry problem solving,-->
-<!--          <b>MWP:</b> math word problem,-->
-<!--          <b>TQA:</b> textbook QA,-->
-<!--          <b>VQA:</b> visual QA.-->
-<!--          <br>-->
-<!--          <b>Math reasoning types:</b>-->
-<!--          <b>ALG:</b> algebraic,-->
-<!--          <b>ARI:</b> arithmetic,-->
-<!--          <b>GEO:</b> geometry,-->
-<!--          <b>LOG:</b> logical ,-->
-<!--          <b>NUM:</b> numeric,-->
-<!--          <b>SCI:</b> scientific,-->
-<!--          <b>STA:</b> statistical.-->
-<!--          <br>-->
-<!--          <br>-->
-<!--          <div>-->
-<!--&lt;!&ndash;          <p>🚨 To submit your results to the leaderboard, please send to <a href="mailto:lupantech@gmail.com">this email</a> with your result json files.</p>&ndash;&gt;-->
-<!--&lt;!&ndash;          <p>🚨 For more submission details, please refer to <a href="https://github.com/lupantech/MathVista?tab=readme-ov-file#-leaderboard-">this link</a> and <a href="https://github.com/lupantech/MathVista?tab=readme-ov-file#-evaluations-on-mathvista">this link</a>.&ndash;&gt;-->
-<!--&lt;!&ndash;          </p>&ndash;&gt;-->
-<!--          </div>-->
-<!--        </div>-->
+      .custom-table th, .custom-table td {
+        padding: 12px 15px;
+        text-align: center; /* 默认居中 */
+      }
+      
+      /* 模型名称列左对齐 */
+      .custom-table td:nth-child(2), .custom-table th:nth-child(2) {
+        text-align: left;
+      }
 
-<!--      </div>-->
-<!--    </div>-->
+      .custom-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        transition: background-color 0.2s;
+      }
 
-<!--  </div>-->
+      .custom-table tbody tr:nth-of-type(even) {
+        background-color: #fcfcfc;
+      }
 
+      .custom-table tbody tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* 前三名微调背景色 */
+      .row-rank-1 { background-color: #fffde7 !important; } /* 金色淡背景 */
+      .row-rank-2 { background-color: #f5f5f5 !important; } /* 银色淡背景 */
+      .row-rank-3 { background-color: #fff8e1 !important; } /* 铜色淡背景 */
+
+      .best-score-text {
+        color: #C6011F;
+        font-weight: bold;
+      }
+    </style>
+
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3" id="leaderboard">Leaderboard on <img src="static/images/favicon.svg" style="width:1.0em;vertical-align: middle" alt="Logo"/> A<sup>3</sup>-Bench</h2>
+        <div class="content">
+          <p class="mt-3">
+            Performance comparison across three different memory paradigms. 
+            <br>
+            <b>AAUI</b> (Anchor-Attractor Utilization Index) measures the effective usage of memory.
+          </p>
+
+          <h3 class="title is-4" style="margin-top: 40px; margin-bottom: 20px; color: #363636;">
+            1. Annotated Anchors & Attractors
+          </h3>
+          <p style="font-size: 0.9em; margin-bottom: 15px; color: #666;">
+            Models are provided with expert-annotated Anchors and Attractors. This represents the ideal memory utilization scenario.
+          </p>
+          
+          <div class="table-container">
+            <table class="js-sort-table custom-table" id="results-annotated">
+              <thead>
+                <tr>
+                  <td class="js-sort-number"><strong>#</strong></td>
+                  <td class="js-sort-number"><strong>Model</strong></td>
+                  <td class="js-sort-number"><strong>Avg. Acc (%)</strong></td>
+                  <td class="js-sort-number"><strong>Math</strong></td>
+                  <td class="js-sort-number"><strong>Physics</strong></td>
+                  <td class="js-sort-number"><strong>Chemistry</strong></td>
+                  <td class="js-sort-number"><strong>AAUI</strong></td>
+                  <td class="js-sort-number"><strong>Tokens</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-rank-1">
+                  <td>1</td>
+                  <td><b class="best-score-text">Grok-4-Fast 🥇</b></td>
+                  <td><b class="best-score-text">65.10</b></td>
+                  <td>75.94</td>
+                  <td>60.12</td>
+                  <td>78.75</td>
+                  <td>0.97</td>
+                  <td>2.64M</td>
+                </tr>
+                <tr class="row-rank-2">
+                  <td>2</td>
+                  <td><b class="best-score-text">Qwen3-30B 🥈</b></td>
+                  <td><b class="best-score-text">60.60</b></td>
+                  <td>73.18</td>
+                  <td>67.08</td>
+                  <td>71.67</td>
+                  <td>0.95</td>
+                  <td>2.73M</td>
+                </tr>
+                <tr class="row-rank-3">
+                  <td>3</td>
+                  <td><b class="best-score-text">Qwen3-4B 🥉</b></td>
+                  <td><b class="best-score-text">58.92</b></td>
+                  <td>72.18</td>
+                  <td>61.52</td>
+                  <td>69.17</td>
+                  <td>0.92</td>
+                  <td>2.68M</td>
+                </tr>
+                <tr><td>4</td><td><b>Claude-Haiku-4.5</b></td><td>56.37</td><td>70.93</td><td>56.21</td><td>74.58</td><td>0.77</td><td>2.26M</td></tr>
+                <tr><td>5</td><td><b>DeepSeek-V3.2</b></td><td>55.96</td><td>65.66</td><td>72.50</td><td>73.75</td><td>0.88</td><td>1.65M</td></tr>
+                <tr><td>6</td><td><b>GLM-4-32B</b></td><td>47.95</td><td>63.91</td><td>55.83</td><td>55.42</td><td>0.92</td><td>1.62M</td></tr>
+                <tr><td>7</td><td><b>GPT-OSS-120B</b></td><td>47.18</td><td>59.40</td><td>47.90</td><td>63.33</td><td>0.68</td><td>2.05M</td></tr>
+                <tr><td>8</td><td><b>Llama-3.1-70B</b></td><td>44.77</td><td>56.64</td><td>45.83</td><td>55.00</td><td>0.96</td><td>1.69M</td></tr>
+                <tr><td>9</td><td><b>GPT-5-Mini</b></td><td>25.34</td><td>36.59</td><td>32.57</td><td>22.92</td><td>0.74</td><td>2.33M</td></tr>
+                <tr><td>10</td><td><b>Gemini-2.5-Flash</b></td><td>19.75</td><td>37.84</td><td>35.07</td><td>8.33</td><td>0.69</td><td>2.34M</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 50px; margin-bottom: 20px; color: #363636;">
+            2. Retrieved Anchors & Attractors (HybridRAG)
+          </h3>
+          <p style="font-size: 0.9em; margin-bottom: 15px; color: #666;">
+            Models retrieve memory automatically using HybridRAG. This evaluates the system's ability to find and use relevant knowledge.
+          </p>
+          
+          <div class="table-container">
+            <table class="js-sort-table custom-table" id="results-retrieved">
+              <thead>
+                <tr>
+                  <td class="js-sort-number"><strong>#</strong></td>
+                  <td class="js-sort-number"><strong>Model</strong></td>
+                  <td class="js-sort-number"><strong>Avg. Acc (%)</strong></td>
+                  <td class="js-sort-number"><strong>Math</strong></td>
+                  <td class="js-sort-number"><strong>Physics</strong></td>
+                  <td class="js-sort-number"><strong>Chemistry</strong></td>
+                  <td class="js-sort-number"><strong>AAUI</strong></td>
+                  <td class="js-sort-number"><strong>Tokens</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-rank-1">
+                  <td>1</td>
+                  <td><b class="best-score-text">Grok-4-Fast 🥇</b></td>
+                  <td><b class="best-score-text">56.69</b></td>
+                  <td>68.92</td>
+                  <td>72.50</td>
+                  <td>65.00</td>
+                  <td>0.66</td>
+                  <td>3.17M</td>
+                </tr>
+                <tr class="row-rank-2">
+                  <td>2</td>
+                  <td><b class="best-score-text">Claude-Haiku-4.5 🥈</b></td>
+                  <td><b class="best-score-text">51.18</b></td>
+                  <td>64.66</td>
+                  <td>60.42</td>
+                  <td>62.50</td>
+                  <td>0.46</td>
+                  <td>2.58M</td>
+                </tr>
+                <tr class="row-rank-3">
+                  <td>3</td>
+                  <td><b class="best-score-text">DeepSeek-V3.2 🥉</b></td>
+                  <td><b class="best-score-text">47.27</b></td>
+                  <td>59.40</td>
+                  <td>49.10</td>
+                  <td>44.17</td>
+                  <td>0.22</td>
+                  <td>1.94M</td>
+                </tr>
+                <tr><td>4</td><td><b>GPT-OSS-120B</b></td><td>47.22</td><td>56.14</td><td>57.08</td><td>52.08</td><td>0.44</td><td>2.48M</td></tr>
+                <tr><td>5</td><td><b>Qwen3-30B</b></td><td>44.31</td><td>64.16</td><td>60.42</td><td>39.17</td><td>0.36</td><td>1.97M</td></tr>
+                <tr><td>6</td><td><b>GLM-4-32B</b></td><td>39.40</td><td>59.90</td><td>52.50</td><td>29.58</td><td>0.41</td><td>1.82M</td></tr>
+                <tr><td>7</td><td><b>Qwen3-4B</b></td><td>38.13</td><td>59.15</td><td>46.59</td><td>30.83</td><td>0.27</td><td>1.87M</td></tr>
+                <tr><td>8</td><td><b>Llama-3.1-70B</b></td><td>28.98</td><td>44.11</td><td>37.47</td><td>20.83</td><td>0.33</td><td>1.88M</td></tr>
+                <tr><td>9</td><td><b>Gemini-2.5-Flash</b></td><td>21.66</td><td>30.58</td><td>30.26</td><td>23.75</td><td>0.14</td><td>2.77M</td></tr>
+                <tr><td>10</td><td><b>GPT-5-Mini</b></td><td>18.74</td><td>26.32</td><td>24.35</td><td>18.33</td><td>0.09</td><td>2.74M</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 50px; margin-bottom: 20px; color: #363636;">
+            3. Vanilla (No Memory)
+          </h3>
+          <p style="font-size: 0.9em; margin-bottom: 15px; color: #666;">
+            Standard zero-shot inference without external memory augmentation.
+          </p>
+          
+          <div class="table-container">
+            <table class="js-sort-table custom-table" id="results-vanilla">
+              <thead>
+                <tr>
+                  <td class="js-sort-number"><strong>#</strong></td>
+                  <td class="js-sort-number"><strong>Model</strong></td>
+                  <td class="js-sort-number"><strong>Avg. Acc (%)</strong></td>
+                  <td class="js-sort-number"><strong>Math</strong></td>
+                  <td class="js-sort-number"><strong>Physics</strong></td>
+                  <td class="js-sort-number"><strong>Chemistry</strong></td>
+                  <td class="js-sort-number"><strong>Tokens</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-rank-1">
+                  <td>1</td>
+                  <td><b class="best-score-text">Qwen3-30B 🥇</b></td>
+                  <td><b class="best-score-text">48.41</b></td>
+                  <td>55.64</td>
+                  <td>48.90</td>
+                  <td>60.83</td>
+                  <td>1.81M</td>
+                </tr>
+                <tr class="row-rank-2">
+                  <td>2</td>
+                  <td><b class="best-score-text">Grok-4-Fast 🥈</b></td>
+                  <td><b class="best-score-text">47.45</b></td>
+                  <td>51.38</td>
+                  <td>43.99</td>
+                  <td>58.75</td>
+                  <td>1.18M</td>
+                </tr>
+                <tr class="row-rank-3">
+                  <td>3</td>
+                  <td><b class="best-score-text">DeepSeek-V3.2 🥉</b></td>
+                  <td><b class="best-score-text">45.36</b></td>
+                  <td>46.37</td>
+                  <td>38.28</td>
+                  <td>60.42</td>
+                  <td>0.70M</td>
+                </tr>
+                <tr><td>4</td><td><b>Claude-Haiku-4.5</b></td><td>41.26</td><td>43.11</td><td>50.42</td><td>64.58</td><td>0.96M</td></tr>
+                <tr><td>5</td><td><b>GPT-OSS-120B</b></td><td>40.76</td><td>49.12</td><td>40.18</td><td>50.42</td><td>0.44M</td></tr>
+                <tr><td>6</td><td><b>Qwen3-4B</b></td><td>37.76</td><td>47.62</td><td>42.89</td><td>46.67</td><td>1.91M</td></tr>
+                <tr><td>7</td><td><b>GLM-4-32B</b></td><td>25.20</td><td>37.59</td><td>28.56</td><td>30.00</td><td>0.44M</td></tr>
+                <tr><td>8</td><td><b>Llama-3.1-70B</b></td><td>23.96</td><td>34.21</td><td>26.94</td><td>28.21</td><td>0.57M</td></tr>
+                <tr><td>9</td><td><b>GPT-5-Mini</b></td><td>21.97</td><td>31.83</td><td>26.65</td><td>26.67</td><td>1.35M</td></tr>
+                <tr><td>10</td><td><b>Gemini-2.5-Flash</b></td><td>15.01</td><td>24.81</td><td>26.15</td><td>5.00</td><td>1.30M</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="hero is-light is-small">
   <div class="hero-body has-text-centered">
-    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
-  <h1 class="title is-1 mathvista">
-    <img src="static/images/favicon.svg" style="width:1em;vertical-align: middle" alt="Logo">
-    <span>A<sup>3</sup>-Bench Dataset</span>
-  </h1>
+    <h1 class="title is-1 mathvista">
+      <img src="static/images/favicon.svg" style="width:1em;vertical-align: middle" alt="Logo"/>
+      <span class="mathvista" style="vertical-align: middle">A<sup>3</sup>-Bench Dataset</span>
+    </h1>
   </div>
 </section>
 
 
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista">
+      <img src="static/images/favicon.svg" style="width:1em;vertical-align: middle" alt="Logo"/>
+      <span class="mathvista" style="vertical-align: middle">Overview & Methodology</span>
+    </h1>
+  </div>
+</section> -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-7">
+        <h2 class="title is-3">Dataset Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>A<sup>3</sup>-Bench</strong> is a comprehensive benchmark designed to evaluate memory-driven scientific reasoning. 
+            It is constructed via the <strong>SAPM process</strong> (Subject, Anchor & Attractor, Problem, Memory Developing).
+          </p>
+          <p>
+            The dataset contains a total of <strong>2,198 problems</strong>, distributed across:
+          </p>
+          <ul>
+            <li><strong>Math (45.4%)</strong>, <strong>Physics (27.3%)</strong>, and <strong>Chemistry (27.3%)</strong>.</li>
+            <li>Difficulty is balanced: <strong>40% Easy</strong>, <strong>~30% Medium</strong>, and <strong>~30% Hard</strong>.</li>
+          </ul>
+          <p>
+             We model scientific reasoning memory at two scales: <strong>Anchors</strong> (foundational knowledge) and <strong>Attractors</strong> (experience-based templates).
+          </p>
+        </div>
+      </div>
+      <div class="column is-5 has-text-centered">
+        <figure class="image is-inline-block box p-2">
+          <img src="static/images/statics.png" alt="Dataset Statistics" style="width: 100%; border-radius: 4px;">
+          <figcaption class="mt-2 is-size-7 has-text-grey">
+            <b>Table 1:</b> Key Statistics of A<sup>3</sup>-Bench.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <hr class="is-divider" style="margin: 3rem 0;">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">The SAPM Construction Process</h2>
+        <figure class="image is-centered box m-4">
+          <img src="static/images/Figure2.png" alt="SAPM Construction Process" style="width: 100%; object-fit: contain;">
+          <figcaption class="mt-3 has-text-grey-dark">
+            <b>Figure 2:</b> The four-step <b>SAPM</b> annotation process: Subject Benchmarking, Anchors & Attractors Developing, Problem Reconstructing, and Memory Mapping.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered mt-6">
+      <div class="column is-full">
+        <h2 class="title is-3">Evaluation Framework</h2>
+        <figure class="image is-centered box m-4">
+          <img src="static/images/Figure5.png" alt="HybridRAG Framework" style="max-width: 65%; margin: 0 auto; display: block;">
+          <figcaption class="mt-3 has-text-grey-dark">
+            <b>Figure 3:</b> The <b>HybridRAG</b> framework, utilizing Memory Twin-Needle Activator and Context Fabric Composer to simulate human-like memory retrieval.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    
+  </div>
+</section>
 
 <section class="hero is-light is-small">
   <div class="hero-body has-text-centered">
-    <!-- <h1 class="title is-1 mathvista"><img src="static/images/mathvista.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>MathVista Dataset</h1> -->
-  <h1 class="title is-1 mathvista">
-    <span>Experiment Results</span>
-  </h1>
+    <h1 class="title is-1 mathvista">
+      Analysis & Insights
+    </h1>
   </div>
 </section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-multiline">
+      
+      <div class="column is-6 has-text-centered">
+        <div class="box h-100">
+          <h4 class="title is-4">Efficiency vs. Performance</h4>
+          <img src="static/images/a5.png" alt="Inference Time vs Accuracy" style="width: 100%; height: auto;">
+          <p class="content is-small mt-2 has-text-left">
+            <b>Figure 4:</b> Inference time vs. Accuracy. The <b>Annotated</b> paradigm (Green) achieves the highest accuracy with moderate latency, significantly outperforming the Vanilla baseline.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-6 has-text-centered">
+        <div class="box h-100">
+          <h4 class="title is-4">Subject & Difficulty Breakdown</h4>
+          <img src="static/images/a2.png" alt="Heatmap Analysis" style="width: 100%; height: auto;">
+          <p class="content is-small mt-2 has-text-left">
+            <b>Figure 5:</b> Performance heatmap. The memory mechanism provides the most significant gains in <b>Hard</b> physics and chemistry problems, where multi-hop reasoning is required.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-6 has-text-centered">
+        <div class="box h-100">
+          <h4 class="title is-4">Error Attribution</h4>
+          <img src="static/images/a3.png" alt="Error Type Analysis" style="width: 100%; height: auto;">
+          <p class="content is-small mt-2 has-text-left">
+            <b>Figure 6:</b> Distribution of error types. Activating Anchors and Attractors significantly reduces <b>Knowledge Errors</b> and <b>Reasoning Hallucinations</b>.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-6 has-text-centered">
+        <div class="box h-100">
+          <h4 class="title is-4">Robustness to Noise</h4>
+          <img src="static/images/a4.png" alt="Impact of Distracting Memory" style="width: 100%; height: auto;">
+          <p class="content is-small mt-2 has-text-left">
+            <b>Figure 7:</b> Impact of interfering memory. The model demonstrates robustness against irrelevant anchors (noise), maintaining stability even when distraction levels increase.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista">
+      Case Studies
+    </h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <p>Qualitative analysis of dataset samples and reasoning trajectories.</p>
+    </div>
+
+    <div id="cases-carousel" class="carousel results-carousel">
+      
+      <div class="box m-5">
+        <div class="content has-text-centered">
+          <h4 class="title is-5 mb-2">Dataset Annotation Sample</h4>
+          <img src="static/images/Figure4.png" alt="Dataset Example" style="width: 80%; object-fit: contain;"/>
+          <p class="mt-3">
+            <b>Figure 8:</b> A representative sample from A<sup>3</sup>-Bench showing how <b>Anchors</b> (formulas) and <b>Attractors</b> (solution templates) are mapped to a complex problem.
+          </p>
+        </div>
+      </div>
+
+      <div class="box m-5">
+        <div class="content has-text-centered">
+          <h4 class="title is-5 mb-2" style="color: #2e7d32;">Successful Reasoning Trace</h4>
+          <img src="static/images/Figure6.png" alt="Success Case" style="width: 100%; object-fit: contain;"/>
+          <p class="mt-3">
+            <b>Figure 9:</b> A success case where the model correctly activates the relevant Anchor (Pitman-Yor process) to solve a problem failed by the Vanilla model.
+          </p>
+        </div>
+      </div>
+
+      <div class="box m-5">
+        <div class="content has-text-centered">
+          <h4 class="title is-5 mb-2" style="color: #c62828;">Failure Analysis</h4>
+          <img src="static/images/Figure7.png" alt="Failure Case" style="width: 100%; object-fit: contain;"/>
+          <p class="mt-3">
+            <b>Figure 10:</b> A failure case where the retrieval system activated a <b>noisy Anchor</b> (irrelevant formula), leading to incorrect derivation.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function() {
+    if (typeof bulmaCarousel !== 'undefined') {
+      bulmaCarousel.attach('#cases-carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: true,
+        autoplay: false,
+        pagination: true,
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Flexbox for Equal Height Analysis Boxes */
+  .h-100 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .box img {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+</style>
+
 
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
     <pre><code>@misc{zhang2026a3benchbenchmarkingmemorydrivenscientific,
       title={$A^3$-Bench: Benchmarking Memory-Driven Scientific Reasoning via Anchor and Attractor Activation},
       author={Jian Zhang and Yu He and Zhiyuan Wang and Zhangqi Wang and Kai He and Fangzhi Xu and Qika Lin and Jun Liu},
@@ -511,32 +693,21 @@
   </div>
 </section>
 
-<!--<section>-->
-<!--  <div class="section" id="org-banners" style="display:flex">-->
-<!--    <a href="https://www.xjtu.edu.cn/" target="_blank" rel="external">-->
-<!--        <img class="center-block org-banner" src="static/images/xjtu.png" style="height:100px;">-->
-<!--    </a>-->
-<!--    <a href="https://nus.edu.sg/" target="_blank" class="external">-->
-<!--        <img class="center-block org-banner" src="static/images/nus.png" style="height:180px;">-->
-<!--    </a>-->
-<!--  </div>-->
-<!--</section>-->
-
-
 <footer class="footer">
-  <div class="container">
+  <div class="content has-text-centered">
+    </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is website adapted from <a href="https://mathvista.github.io/">MathVista</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            This website is adapted from <a href="https://mathvista.github.io/">MathVista</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
